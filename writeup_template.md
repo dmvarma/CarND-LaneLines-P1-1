@@ -1,47 +1,32 @@
 # **Finding Lane Lines on the Road** 
 
-## Writeup Template
+## Introduction
 
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
+
+### The goal of this project is to identify and mark the lanes on the road for a given input video and output a video with lane markings.  
 
 ---
 
 **Finding Lane Lines on the Road**
 
-The goals / steps of this project are the following:
-* Make a pipeline that finds lane lines on the road
-* Reflect on your work in a written report
+The project consists of following steps: 
+* Read input file 
+* pass the input through pipeline 
+* save the output file 
+
+### 1. Pileline Design
+*I have converted the input image to grayscale image. Then I have used gaussian function to reduce the noise.  
+*To identify edges I have used canny edge detection function with kernel_size = 5, low_threshold = 110 and high_treshold = 170 
+*To specify of the region to detect the lanes, I have created a mask , with dimensions 450, 320 , 500, 300.
+*To identify the lines in the image I have used Hough transform  with rho =2 , theta = np.pi/180, threshold = 50,  min_line = 2 and max_line_gap= 130. 
+*Finally, I have used addWeighted function from cv2 to create a final image with lane marking on the input image. 
 
 
-[//]: # (Image References)
+### 2. Observation  
+The pipeline is able to 
 
-[image1]: ./examples/grayscale.jpg "Grayscale"
-
----
-
-### Reflection
-
-### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
-
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
-
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
-
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
-
-![alt text][image1]
+### 3. Scope of Improvements 
+Although Hough transformation is able to identify lines for lanes. It did not appear to be continous for a given video. Lines can be joined seperately for visibility purpose. 
+Or Hough transform can be further modified. 
 
 
-### 2. Identify potential shortcomings with your current pipeline
-
-
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
-
-
-### 3. Suggest possible improvements to your pipeline
-
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
